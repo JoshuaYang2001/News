@@ -1509,8 +1509,26 @@ class NewsAnalyzer:
                 title_info = historical_title_info
                 results = all_results
             else:
-                print("❌ 严重错误：无法读取刚保存的数据文件")
-                raise RuntimeError("数据一致性检查失败：保存后立即读取失败")
+                # 没有历史数据时使用当前数据（如仅启用 RSS 未启用热榜）
+                title_info = self._prepare_current_title_info(results, time_info)
+                standalone_data = self._prepare_standalone_data(
+                    results, id_to_name, title_info, raw_rss_items
+                )
+                stats, html_file, ai_result = self._run_analysis_pipeline(
+                    results,
+                    self.report_mode,
+                    title_info,
+                    new_titles,
+                    word_groups,
+                    filter_words,
+                    id_to_name,
+                    failed_ids=failed_ids,
+                    global_filters=global_filters,
+                    rss_items=rss_items,
+                    rss_new_items=rss_new_items,
+                    standalone_data=standalone_data,
+                    schedule=schedule,
+                )
         elif self.report_mode == "daily":
             # daily 模式：使用全天累计数据
             analysis_data = self._load_analysis_data()
