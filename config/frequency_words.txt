@@ -230,6 +230,15 @@
 [AI 相关]
 /(?<![a-zA-Z])ai(?![a-zA-Z])/
 人工智能
+/大模型|大语言模型|\bLLM\b|\bLLMs\b/ => 大模型
+/机器学习|深度学习|\bML\b|\bDL\b/ => 机器学习
+/\bAGI\b|通用人工智能/ => AGI
+/\bRAG\b|检索增强/ => RAG
+/多模态|Multimodal/ => 多模态
+/\bAgent\b|智能体/ => AI Agent
+/\bMoE\b|混合专家/ => MoE
+/扩散模型|Diffusion|文生图|文生视频|\bStable Diffusion\b|\bMidjourney\b/ => AI生成
+/AI编程|AI代码|\bCopilot\b|\bCursor\b|\bClaude Code\b/ => AI编程
 
 [芯片]
 芯片
