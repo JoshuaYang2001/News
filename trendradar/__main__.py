@@ -1636,8 +1636,11 @@ class NewsAnalyzer:
 
             mode_strategy = self._get_mode_strategy()
 
-            # 抓取热榜数据
-            results, id_to_name, failed_ids = self._crawl_data()
+            # 抓取热榜数据（仅在爬虫功能启用时）
+            if self.ctx.config["ENABLE_CRAWLER"]:
+                results, id_to_name, failed_ids = self._crawl_data()
+            else:
+                results, id_to_name, failed_ids = {}, {}, []
 
             # 抓取 RSS 数据（如果启用），返回统计条目、新增条目和原始条目
             rss_items, rss_new_items, raw_rss_items = self._crawl_rss_data()
